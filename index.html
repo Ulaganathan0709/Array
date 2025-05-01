@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unique String Adder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .output {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .output p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Add Unique Strings</h2>
+    <input type="text" id="inputValue" placeholder="Enter a string" />
+    <br>
+    <button onclick="addString()">Add</button>
+
+    <div class="output" id="outputArea">
+      <!-- Sorted array & length will appear here -->
+    </div>
+  </div>
+
+  <script>
+    let strings = [];
+
+    function addString() {
+      const input = document.getElementById("inputValue").value.trim().toLowerCase();
+      const output = document.getElementById("outputArea");
+
+      if (input === "") {
+        alert("Please enter a string.");
+        return;
+      }
+
+      if (strings.includes(input)) {
+        alert(`⚠️ '${input}' is already in the array.`);
+      } else {
+        strings.push(input);
+        strings.sort();
+        alert(`✅ '${input}' added successfully.`);
+      }
+
+      // Display results
+      output.innerHTML = `
+        <p><strong>Sorted Array:</strong> ${strings.join(", ")}</p>
+        <p><strong>Array Length:</strong> ${strings.length}</p>
+      `;
+
+      // Clear input
+      document.getElementById("inputValue").value = "";
+    }
+  </script>
+
+</body>
+</html>
